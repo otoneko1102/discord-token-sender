@@ -22,7 +22,7 @@ textarea {
   box-sizing: border-box;
 }
 
-button {
+.sendButton {
   background-color: #4CAF50;
   color: white;
   padding: 10px;
@@ -31,6 +31,6 @@ button {
   width: 100%;
 }
 
-button:hover {
+.sendButton:hover {
   background-color: #45a049;
 }
