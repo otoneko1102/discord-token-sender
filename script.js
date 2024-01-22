@@ -20,3 +20,8 @@ function sendMessage() {
     }, i * interval);
   }
 }
+
+function clearFileInput() {
+  const fileInput = document.getElementById("fileInput");
+  fileInput.value = '';
+}
