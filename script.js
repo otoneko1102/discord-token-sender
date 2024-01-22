@@ -4,14 +4,19 @@ function sendMessage() {
   const interval = document.getElementById("interval").value;
   const sendCount = document.getElementById("sendCount").value;
   const content = document.getElementById("content").value;
+  const fileInput = document.getElementById("fileInput");
 
   for (let i = 0; i < sendCount; i++) {
     setTimeout(() => {
       const xhr = new XMLHttpRequest();
+      const formData = new FormData();
+
+      formData.append("content", content);
+      formData.append("file", fileInput.files[0]);
+
       xhr.open("POST", `https://discord.com/api/v9/channels/${channelId}/messages`);
-      xhr.setRequestHeader("Content-Type", "application/json");
       xhr.setRequestHeader("Authorization", `${token}`);
-      xhr.send(JSON.stringify({ content }));
+      xhr.send(formData);
     }, i * interval);
   }
 }
