@@ -5,13 +5,16 @@ function sendMessage() {
   const sendCount = document.getElementById("sendCount").value;
   const content = document.getElementById("content").value;
   const fileInput = document.getElementById("fileInput");
+  const option = document.getElementById("option").value;
 
   for (let i = 0; i < sendCount; i++) {
     setTimeout(() => {
       const xhr = new XMLHttpRequest();
       const formData = new FormData();
 
-      formData.append("content", content);
+      let modifiedContent = applyOption(content, option);
+
+      formData.append("content", modifiedContent);
       formData.append("file", fileInput.files[0]);
 
       xhr.open("POST", `https://discord.com/api/v9/channels/${channelId}/messages`);
@@ -19,6 +22,37 @@ function sendMessage() {
       xhr.send(formData);
     }, i * interval);
   }
+}
+
+function applyOption(content, option) {
+  switch (option) {
+    case "Add random string at the top":
+      return addRandomStringAtTop(content);
+    case "Add random string at the end":
+      return addRandomStringAtEnd(content);
+    default:
+      return content;
+  }
+}
+
+function addRandomStringAtTop(content) {
+  const randomString = generateRandomString();
+  return `${randomString}\n\n${content}`;
+}
+
+function addRandomStringAtEnd(content) {
+  const randomString = generateRandomString();
+  return `${content}\n\n${randomString}`;
+}
+
+function generateRandomString() {
+  const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let randomString = "";
+  for (let i = 0; i < 4; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomString += characters.charAt(randomIndex);
+  }
+  return randomString;
 }
 
 function clearFileInput() {
