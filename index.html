@@ -26,6 +26,13 @@
     <label for="content">Content:</label>
     <textarea id="content" name="content" required></textarea><br>
 
+    <label for="option">Option:</label>
+    <select id="option" name="option">
+      <option value="None" selected>None</option>
+      <option value="Add random string at the top">Add random string at the top</option>
+      <option value="Add random string at the end">Add random string at the end</option>
+    </select><br>
+    
     <label for="fileInput">Image:</label>
     <input type="file" id="fileInput" name="fileInput" accept="image/*">
     <button type="button" onclick="clearFileInput()">Clear</button><br>
