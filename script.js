@@ -22,6 +22,7 @@ function sendMessage() {
       xhr.send(formData);
     }, i * interval);
   }
+  alert(`Sent ${sendCount} messages to ${channelId}!`);
 }
 
 function applyOption(content, option) {
