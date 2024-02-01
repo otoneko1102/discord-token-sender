@@ -7,6 +7,16 @@ function sendMessage() {
   const fileInput = document.getElementById("fileInput");
   const option = document.getElementById("option").value;
 
+  if (!token || !interval || !sendCount) {
+    alert("Missing parameters.");
+    return;
+  }
+
+  if (!content && fileInput.files.length == 0) {
+    alert("Missing parameters.");
+    return;
+  }
+  
   for (let i = 0; i < sendCount; i++) {
     setTimeout(() => {
       const xhr = new XMLHttpRequest();
