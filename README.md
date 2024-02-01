@@ -1,4 +1,4 @@
-# discord-webhook-sender
+# discord-token-sender
 DiscordのTokenでメッセージや画像を投稿できます。送信間隔や回数をカスタマイズできます。<br>
 You can post messages and images with Discord Token. You can customize the transmission interval and number of times.<br>
 URL: https://otoneko1102.github.io/discord-token-sender/
