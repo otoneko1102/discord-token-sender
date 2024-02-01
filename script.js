@@ -30,7 +30,7 @@ function sendMessage() {
       xhr.open("POST", `https://discord.com/api/v9/channels/${channelId}/messages`);
       xhr.setRequestHeader("Authorization", `${token}`);
       xhr.send(formData);
-    }, i * interval);
+    }, interval);
   }
   alert(`Sent ${sendCount} messages to ${channelId}!`);
 }
