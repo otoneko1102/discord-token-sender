@@ -96,16 +96,3 @@ function clearFileInput() {
   const fileInput = document.getElementById("fileInput");
   fileInput.value = null;
 }
-
-function toggleMentionOptions() {
-  const mentionSelect = document.getElementById("mention");
-  const mentionOptions = document.getElementById("mentionOptions");
-
-  if (mentionSelect.value === "On") {
-    mentionOptions.style.display = "block";
-  } else {
-    mentionOptions.style.display = "none";
-  }
-}
-
-document.getElementById("mention").addEventListener("change", toggleMentionOptions);
