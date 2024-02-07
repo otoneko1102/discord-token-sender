@@ -108,3 +108,4 @@ function toggleMentionOptions() {
   }
 }
 
+document.getElementById("mention").addEventListener("change", toggleMentionOptions);
