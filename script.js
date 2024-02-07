@@ -6,6 +6,9 @@ function sendMessage() {
   const content = document.getElementById("content").value;
   const fileInput = document.getElementById("fileInput");
   const option = document.getElementById("option").value;
+  const mention = document.getElementById("option").value === "On";
+  const guildId = document.getElementById("guildId").value;
+  const mentionCount = document.getElementById("mentionCount").value;
 
   if (!token || !interval || !sendCount) {
     alert("Missing parameters.");
@@ -16,14 +19,32 @@ function sendMessage() {
     alert("Missing parameters.");
     return;
   }
+
+  let mentions = [];
+  if (mention === true && mentionCount > 0) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `https://discord.com/api/guilds/${guildId}/members`, true);
+    xhr.setRequestHeader('Authorization', token);
+    xhr.onreadystatechange = () => {
+      const members = JSON.parse(xhr.responseText);
+      mentions = members.map(member => member.user.id);
+    }
+  }
   
   for (let i = 0; i < sendCount; i++) {
     setTimeout(() => {
       const xhr = new XMLHttpRequest();
       const formData = new FormData();
 
-      let modifiedContent = applyOption(content, option);
+      const users = [];
+      if (mentions.length > 0) {
+        for (let i = 0; i < mentionCount; i++) {
+          users.push(`<@${mentions[Math.floor(Math.random() * mentions.length)]}>`);
+        }
+      }
 
+      let modifiedContent = users.length > 0 ? applyOption(`${users.join(' ')}\n\n${content}`, option) : applyOption(content, option);
+     
       formData.append("content", modifiedContent);
       formData.append("file", fileInput.files[0]);
 
