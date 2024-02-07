@@ -3,7 +3,7 @@ function sendMessage() {
   const channelId = document.getElementById("channelId").value;
   const interval = document.getElementById("interval").value;
   const sendCount = document.getElementById("sendCount").value;
-  const content = document.getElementById("content").value;
+  const content = document.getElementById("content").value || '';
   const fileInput = document.getElementById("fileInput");
   const option = document.getElementById("option").value;
   const mention = document.getElementById("option").value === "On";
@@ -15,7 +15,12 @@ function sendMessage() {
     return;
   }
 
-  if (!content && fileInput.files.length == 0) {
+  if (!content && fileInput.files.length == 0 && option === "None" && !mention) {
+    alert("Missing parameters.");
+    return;
+  }
+
+  if (mention === true && mentionCount > 0 && !guildId) {
     alert("Missing parameters.");
     return;
   }
