@@ -26,6 +26,10 @@
     <label for="content">Content:</label>
     <textarea id="content" name="content" required></textarea><br>
 
+    <label for="fileInput">Image:</label>
+    <input type="file" id="fileInput" name="fileInput" accept="image/*">
+    <button type="button" onclick="clearFileInput()">Clear</button><br>
+
     <label for="option">Option:</label>
     <select id="option" name="option">
       <option value="None" selected>None</option>
@@ -34,21 +38,21 @@
     </select><br>
 
     <label for="mention">Random Mention:</label>
-    <select id="mention" name="mention">
+    <select id="mention" name="mention" onchange="toggleMentionOptions()">
       <option value="Off" selected>None</option>
       <option value="On">On</option>
     </select><br>
 
-    <label for="guildId">Guild ID:</label>
-    <input type="text" id="guildId" name="guildId"><br>
+    <div id="mentionOptions" style="display: none;">
+      <label for="guildId">Guild ID:</label>
+      <input type="text" id="guildId" name="guildId"><br>
 
-    <label for="mentionCount">Mention Count:</label>
-    <input type="number" id="mentionCount" name="mentionCount" value="1" required><br>
+      <label for="mentionCount">Mention Count:</label>
+      <input type="number" id="mentionCount" name="mentionCount" value="1" required>
+    </div><br>
     
-    <label for="fileInput">Image:</label>
-    <input type="file" id="fileInput" name="fileInput" accept="image/*">
-    <button type="button" onclick="clearFileInput()">Clear</button><br>
     <br>
+    
     <button type="button" class="sendButton" onclick="sendMessage()">Send</button>
   </form>
 
