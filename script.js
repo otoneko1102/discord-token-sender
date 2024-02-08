@@ -34,7 +34,7 @@ function sendMessage() {
         guild_id: guildId
       }
     }
-    fetch("https://otonecord.glitch.me/api/discordGuildMembers", requestOption)
+    fetch("https://otonecord.glitch.me/discordGuildMembers", requestOption)
       .then(res => {
         if (!res.ok || res.status == 400 || res.status == 500) {
           alert("Random Mention cannot be used.");
