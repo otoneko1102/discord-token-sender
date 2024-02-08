@@ -6,7 +6,7 @@ function sendMessage() {
   const content = document.getElementById("content").value || '';
   const fileInput = document.getElementById("fileInput");
   const option = document.getElementById("option").value;
-  const mention = document.getElementById("mention").value === "On";
+  const mention = document.getElementById("mention").value;
   const guildId = document.getElementById("guildId").value;
   const mentionCount = document.getElementById("mentionCount").value;
 
@@ -20,13 +20,13 @@ function sendMessage() {
     return;
   }
 
-  if (mention === true && mentionCount > 0 && !guildId) {
+  if (mention === "On" && mentionCount > 0 && !guildId) {
     alert("Missing parameters.");
     return;
   }
 
   let mentions = [];
-  if (mention === true && mentionCount > 0) {
+  if (mention === "On" && mentionCount > 0) {
     const requestOption = {
       method: 'GET',
       body: {
