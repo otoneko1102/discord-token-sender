@@ -47,9 +47,11 @@ function sendMessage() {
           alert("Random Mention cannot be used.");
           return;
         }
-        const data = res.json();
+        return res.json();
+      })
+      .then(data => {
         mentions = data.members;
-      });
+      })
   }
   
   for (let i = 0; i < sendCount; i++) {
