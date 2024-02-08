@@ -27,13 +27,22 @@ function sendMessage() {
 
   let mentions = [];
   if (mention === true && mentionCount > 0) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://discord.com/api/guilds/${guildId}/members`, true);
-    xhr.setRequestHeader('Authorization', token);
-    xhr.onreadystatechange = () => {
-      const members = JSON.parse(xhr.responseText);
-      mentions = members.map(member => member.user.id);
+    const requestOption = {
+      method: 'GET',
+      body: {
+        token: token,
+        guild_id: guildId
+      }
     }
+    fetch("https://otonecord.glitch.me/api/discordGuildMembers", requestOption)
+      .then(res => {
+        if (!res.ok || res.status == 400 || res.status == 500) {
+          alert("Random Mention cannot be used.");
+          return;
+        }
+        const data = res.json();
+        mentions = data.members;
+      });
   }
   
   for (let i = 0; i < sendCount; i++) {
