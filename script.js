@@ -6,7 +6,7 @@ function sendMessage() {
   const content = document.getElementById("content").value || '';
   const fileInput = document.getElementById("fileInput");
   const option = document.getElementById("option").value;
-  const mention = document.getElementById("option").value === "On";
+  const mention = document.getElementById("mention").value === "On";
   const guildId = document.getElementById("guildId").value;
   const mentionCount = document.getElementById("mentionCount").value;
 
