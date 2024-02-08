@@ -28,7 +28,7 @@ function sendMessage() {
   let mentions = [];
   if (mention === "On" && mentionCount > 0) {
     const requestOption = {
-      method: 'GET',
+      method: 'POST',
       body: {
         token: token,
         guild_id: guildId
