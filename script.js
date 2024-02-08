@@ -27,14 +27,21 @@ function sendMessage() {
 
   let mentions = [];
   if (mention === "On" && mentionCount > 0) {
-    const requestOption = {
+
+    const requestData = {
+      token: token,
+      guild_id: guildId
+    };
+    
+    const requestOptions = {
       method: 'POST',
-      body: {
-        token: token,
-        guild_id: guildId
-      }
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
     }
-    fetch("https://otonecord.glitch.me/discordGuildMembers", requestOption)
+    
+    fetch("https://otonecord.glitch.me/discordGuildMembers", requestOptions)
       .then(res => {
         if (!res.ok || res.status == 400 || res.status == 500) {
           alert("Random Mention cannot be used.");
